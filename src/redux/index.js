@@ -1,10 +1,18 @@
 import { combineReducers } from 'redux';
 
+export function addTodo(payload) {
+  return {
+    type: 'ADD_TODO',
+    payload
+  }
+}
 
-function test(state = [], action) {
+
+
+function test(state = ['zalupa'], action) {
   switch (action.type) {
     case 'ADD_TODO':
-      return state.concat([action.text]);
+      return state.concat([action.payload]);
     default:
       return state;
   }
