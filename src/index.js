@@ -10,8 +10,9 @@ const rootEl = document.getElementById('root');
 ReactDOM.render(
   <Provider store={store}>
     <App />
-  </Provider>
-  , rootEl);
+  </Provider>,
+  rootEl,
+);
 
 if (module.hot) {
   module.hot.accept();
