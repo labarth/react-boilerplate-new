@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { addTodo } from './redux';
+import { addTodo } from '../rootReducer';
 
 const StyledApp = styled.div`
   font-size: 26px;

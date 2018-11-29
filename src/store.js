@@ -2,7 +2,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
-import rootReducer from './redux';
+import rootReducer from './rootReducer';
 
 export default function configureStore() {
   const enhancer = applyMiddleware(thunk, logger);
@@ -13,8 +13,8 @@ export default function configureStore() {
   );
 
   if (module.hot) {
-    module.hot.accept('./redux', () => {
-      const nextRootReducer = require('./redux').default; // eslint-disable-line global-require
+    module.hot.accept('./rootReducer', () => {
+      const nextRootReducer = require('./rootReducer').default; // eslint-disable-line global-require
       store.replaceReducer(nextRootReducer);
     });
   }
