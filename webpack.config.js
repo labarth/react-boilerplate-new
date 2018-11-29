@@ -16,6 +16,7 @@ module.exports = {
     port: 8008,
     open: 'Chrome',
     hot: true,
+    overlay: true,
   },
   module: {
     rules: [
