@@ -6,6 +6,7 @@ import configureStore from './store';
 
 const store = configureStore();
 const rootEl = document.getElementById('root');
+window.store = store;
 
 ReactDOM.render(
   <Provider store={store}>

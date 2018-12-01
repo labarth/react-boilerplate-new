@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { List } from 'immutable';
 
 export function addTodo(payload) {
   return {
@@ -7,12 +8,10 @@ export function addTodo(payload) {
   }
 }
 
-
-
-function test(state = ['zalupa'], action) {
+export function test(state = new List(), action) {
   switch (action.type) {
     case 'ADD_TODO':
-      return state.concat([action.payload]);
+      return state.push(action.payload);
     default:
       return state;
   }
