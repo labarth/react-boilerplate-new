@@ -1,5 +1,6 @@
 const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -25,4 +26,7 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new CompressionPlugin()
+  ]
 }
