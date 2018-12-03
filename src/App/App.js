@@ -25,6 +25,7 @@ class App extends PureComponent {
 
   state = {
     userName: '',
+    lala: '',
   }
 
   componentDidMount() {
@@ -37,12 +38,28 @@ class App extends PureComponent {
     this.props.addTodo('popopsska');
   }
 
+  handleClickServer = () => {
+    fetch('/api/test', {
+      method: 'post',
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ testovik: "testovik"}),
+    })
+    .then(res => res.json())
+    .then(data => {
+      this.setState({ lala: data.test.testovik })
+    });
+  }
+
 
   render() {
     return (
       <StyledApp>
         <button type="button" onClick={this.handleClick}>OK</button>
+        <button type="button" onClick={this.handleClickServer}>server</button>
         {this.state.userName}
+        <div>
+          {this.state.lala}
+        </div>
       </StyledApp>
     );
   }
