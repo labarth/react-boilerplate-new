@@ -16,6 +16,9 @@ module.exports = {
     open: 'Chrome',
     hot: true,
     overlay: true,
+    proxy: {
+      '/api': 'http://localhost:3000',
+    }
   },
   module: {
     rules: [

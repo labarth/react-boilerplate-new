@@ -23,16 +23,26 @@ class App extends PureComponent {
 
   static defaultProps = {};
 
+  state = {
+    userName: '',
+  }
+
+  componentDidMount() {
+    fetch('/api/getUsername')
+      .then(res => res.json())
+      .then(user => this.setState({ userName: user.username }));
+  }
+
   handleClick = () => {
-
-
     this.props.addTodo('popopsska');
   }
+
 
   render() {
     return (
       <StyledApp>
         <button type="button" onClick={this.handleClick}>OK</button>
+        {this.state.userName}
       </StyledApp>
     );
   }
