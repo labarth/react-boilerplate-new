@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { addTodo } from '../rootReducer';
@@ -12,7 +13,9 @@ const StyledApp = styled.div`
 
 @connect(null, { addTodo })
 class App extends PureComponent {
-  static propTypes = {};
+  static propTypes = {
+    addTodo: PropTypes.func.isRequired,
+  };
 
   static defaultProps = {};
 
@@ -23,7 +26,7 @@ class App extends PureComponent {
   render() {
     return (
       <StyledApp>
-        <button onClick={this.handleClick}>OK</button>
+        <button type="button" onClick={this.handleClick}>OK</button>
       </StyledApp>
     );
   }

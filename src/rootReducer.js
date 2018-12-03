@@ -4,8 +4,8 @@ import { List } from 'immutable';
 export function addTodo(payload) {
   return {
     type: 'ADD_TODO',
-    payload
-  }
+    payload,
+  };
 }
 
 export function test(state = new List(), action) {

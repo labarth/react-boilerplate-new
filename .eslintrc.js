@@ -1,6 +1,9 @@
 module.exports = {
   "parser": "babel-eslint",
   "extends": "airbnb",
+  "plugins": [
+    "jest"
+  ],
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/prefer-stateless-function": 0,
@@ -16,11 +19,19 @@ module.exports = {
     "object-curly-newline": [0, {
       "ObjectExpression": "always",
     }],
+    "react/destructuring-assignment": [
+      true,
+      "always",
+      {
+        "ignoreClassFields": true
+      }
+    ],
     "no-unused-expressions": [2, { allowTernary: true }],
     "arrow-parens": ["error", "always"],
   },
   "env": {
     "browser": true,
     "es6": true,
+    "jest": true,
   },
 };
