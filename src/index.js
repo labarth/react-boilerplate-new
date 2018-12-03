@@ -8,10 +8,15 @@ const store = configureStore();
 const rootEl = document.getElementById('root');
 window.store = store;
 
-ReactDOM.render(
+
+const RootReduxComponent = ({ store }) => (
   <Provider store={store}>
     <App />
-  </Provider>,
+  </Provider>
+)
+
+ReactDOM.render(
+  <RootReduxComponent store={store} />,
   rootEl,
 );
 

@@ -11,7 +11,11 @@ const StyledApp = styled.div`
   color: red;
 `;
 
-@connect(null, { addTodo })
+const mapDispatchToProps = (dispatch) => ({
+  addTodo: (data) => dispatch(addTodo(data)),
+})
+
+@connect(null, mapDispatchToProps)
 class App extends PureComponent {
   static propTypes = {
     addTodo: PropTypes.func.isRequired,
@@ -20,7 +24,9 @@ class App extends PureComponent {
   static defaultProps = {};
 
   handleClick = () => {
-    this.props.addTodo('popopka');
+
+
+    this.props.addTodo('popopsska');
   }
 
   render() {
