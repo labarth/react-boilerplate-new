@@ -11,13 +11,7 @@ module.exports = {
   },
   optimization: {
     minimizer: [
-      new UglifyJsPlugin({
-        uglifyOptions: {
-          mangle: {
-            keep_fnames: true,
-          },
-        },
-      })
+      new UglifyJsPlugin({}),
     ],
   },
   module: {
