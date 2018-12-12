@@ -1,4 +1,4 @@
-import { test } from '../rootReducer';
+import { test } from '../redux/rootReducer';
 
 describe('test reducer', () => {
   it('test', () => {

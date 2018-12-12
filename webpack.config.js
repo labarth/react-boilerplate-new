@@ -1,10 +1,13 @@
 const path = require('path');
 const webpack = require('webpack');
+const srcDir = path.resolve(__dirname, 'src');
 
 module.exports = {
-  entry: {
-    app: './src/index.js',
-  },
+  context: srcDir,
+  entry: [
+    '@babel/polyfill',
+    './index.js',
+  ],
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js'
@@ -19,6 +22,12 @@ module.exports = {
     proxy: {
       '/api': 'http://localhost:3000',
     }
+  },
+  resolve: {
+    modules: [
+      srcDir,
+      'node_modules',
+    ],
   },
   module: {
     rules: [

@@ -1,6 +1,16 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import { NotesList } from 'containers/NotesList';
 
-export const App = () => (
-  <div>Hello world</div>
-)
+class App extends Component {
+  shouldComponentUpdate() {
+    return false;
+  }
+
+  render() {
+    return (
+      <NotesList />
+    )
+  }
+}
+
+export { App }
