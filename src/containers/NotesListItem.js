@@ -18,16 +18,16 @@ class NotesListItem extends PureComponent {
   }
 
   render() {
-    const { item } = this.props;
+    const item = this.props.item.toJS();
 
     return (
       <li>
-        <div>{item.get('category')}</div>
-        <div>{item.get('price')}</div>
-        <div>{item.get('date').toLocaleDateString()}</div>
-        <div>{item.get('type')}</div>
-        <div>{item.get('description')}</div>
-        <div>{item.get('currency')}</div>
+        <div>{item.category}</div>
+        <div>{item.price}</div>
+        <div>{item.date.toLocaleDateString()}</div>
+        <div>{item.type}</div>
+        <div>{item.description}</div>
+        <div>{item.currency}</div>
         <button  onClick={this.handleDeleteItem}>delete</button>
       </li>
     );
