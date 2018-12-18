@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import { NotesList } from 'containers/NotesList';
+import React, { Component, Fragment } from 'react';
+import { NotesList } from 'containers/Notes/NotesList';
+import {AddNotesForm} from './containers/Add/AddNotesForm'
 
 class App extends Component {
   shouldComponentUpdate() {
@@ -8,7 +9,10 @@ class App extends Component {
 
   render() {
     return (
-      <NotesList />
+      <Fragment>
+        <NotesList />
+        <AddNotesForm />
+      </Fragment>
     )
   }
 }

@@ -24,7 +24,7 @@ class NotesList extends PureComponent {
 
   static defaultProps = {};
 
-  handleClick = () => {
+  handleClick = (e) => {
     const note = new Map({
       id: v4(),
       price: Math.random() * 100,
