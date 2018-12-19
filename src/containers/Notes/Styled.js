@@ -10,7 +10,7 @@ export const StyledItem = styled.li`
     left: 0;
     width: 3px;
     height: 100%;
-    background-color: ${(props) => (props.isInc ? 'green' : 'red') };
+    background-color: ${(props) => (props.isInc ? 'green' : 'red')};
     position: absolute;
   }
 `;

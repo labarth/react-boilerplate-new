@@ -10,11 +10,11 @@ import { NotesListItem } from './NotesListItem';
 
 const mapDispatchToProps = (dispatch) => ({
   deleteNote: (id) => dispatch(actions.deleteNote(id)),
-})
+});
 
 const mapStateToProps = (state) => ({
   notes: state.notes,
-})
+});
 
 
 @connect(mapStateToProps, mapDispatchToProps)
@@ -30,16 +30,18 @@ class NotesList extends PureComponent {
     const { notes } = this.props;
 
     return (
-      notes.size ?
-      <List>
-        {this.props.notes.map((item) => (
-          <NotesListItem
-            key={item.get('id')}
-            item={item}
-            onDeleteItem={this.handleDeleteItem}
-          />))}
-      </List>
-      : <div>empty lists</div>
+      notes.size
+        ? (
+          <List>
+            {this.props.notes.map((item) => (
+              <NotesListItem
+                key={item.get('id')}
+                item={item}
+                onDeleteItem={this.handleDeleteItem}
+              />))}
+          </List>
+        )
+        : <div>empty lists</div>
     );
   }
 }

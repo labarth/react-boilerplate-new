@@ -1,3 +1,3 @@
 import React from 'react';
 
-export const List = props => <ul>{props.children}</ul>;
+export const List = (props) => <ul>{props.children}</ul>;

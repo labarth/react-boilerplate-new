@@ -31,7 +31,11 @@ class NotesListItem extends PureComponent {
         </Row>
         <Row>
           <Col><StyledCol>Цена:</StyledCol></Col>
-          <Col>{item.price} {item.currency}</Col>
+          <Col>
+            {item.price}
+            {' '}
+            {item.currency}
+          </Col>
         </Row>
         <Row>
           <Col><StyledCol>Дата: </StyledCol></Col>

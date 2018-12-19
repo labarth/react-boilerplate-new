@@ -49,20 +49,19 @@ class AddNotesForm extends PureComponent {
       date: new Date(date),
       category,
       id: v4(),
-      currency: 'BYN'
+      currency: 'BYN',
     });
 
     if (!this.state.disabled) {
       this.props.addNote({ note });
     }
-
   }
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
         <div>
-          <textarea name="" id="" cols="30" rows="10" placeholder="description" name="description" onChange={this.handleChange} required></textarea>
+          <textarea name="" id="" cols="30" rows="10" placeholder="description" name="description" onChange={this.handleChange} required />
         </div>
         <div>
           <TextField

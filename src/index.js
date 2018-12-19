@@ -1,13 +1,13 @@
 import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { GlobalStyle } from 'styled/GlobalStyles';
 import { App } from './App';
 import configureStore from './store';
-import { GlobalStyle } from 'styled/GlobalStyles';
+
 const store = configureStore();
 const rootEl = document.getElementById('root');
 window.store = store;
-
 
 
 const RootReduxComponent = ({ store }) => (
@@ -17,7 +17,7 @@ const RootReduxComponent = ({ store }) => (
       <App />
     </Fragment>
   </Provider>
-)
+);
 
 ReactDOM.render(
   <RootReduxComponent store={store} />,

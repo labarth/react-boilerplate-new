@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { NotesList } from 'containers/Notes/NotesList';
-import {AddNotesForm} from './containers/Add/AddNotesForm'
+import { AddNotesForm } from './containers/Add/AddNotesForm';
 
 class App extends Component {
   shouldComponentUpdate() {
@@ -13,8 +13,8 @@ class App extends Component {
         <NotesList />
         <AddNotesForm />
       </Fragment>
-    )
+    );
   }
 }
 
-export { App }
+export { App };
