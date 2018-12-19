@@ -1,6 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Map } from 'immutable';
+import { Row } from 'components/Row/Row';
+import { Col } from 'components/Col/Col';
+import { StyledItem, StyledCol } from './Styled';
 
 class NotesListItem extends PureComponent {
   static propTypes = {
@@ -21,15 +24,25 @@ class NotesListItem extends PureComponent {
     const item = this.props.item.toJS();
 
     return (
-      <li>
-        <div>{item.category}</div>
-        <div>{item.price}</div>
-        <div>{item.date.toLocaleDateString()}</div>
-        <div>{item.type}</div>
-        <div>{item.description}</div>
-        <div>{item.currency}</div>
-        <button  onClick={this.handleDeleteItem}>delete</button>
-      </li>
+      <StyledItem isInc={item.isInc}>
+        <Row>
+          <Col><StyledCol>Категория:</StyledCol></Col>
+          <Col>{item.category}</Col>
+        </Row>
+        <Row>
+          <Col><StyledCol>Цена:</StyledCol></Col>
+          <Col>{item.price} {item.currency}</Col>
+        </Row>
+        <Row>
+          <Col><StyledCol>Дата: </StyledCol></Col>
+          <Col>{new Date(item.date).toLocaleDateString()}</Col>
+        </Row>
+        <Row>
+          <Col><StyledCol>Описание:</StyledCol></Col>
+          <Col>{item.description}</Col>
+        </Row>
+        <button onClick={this.handleDeleteItem}>delete</button>
+      </StyledItem>
     );
   }
 }

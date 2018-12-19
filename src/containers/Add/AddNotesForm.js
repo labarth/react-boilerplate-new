@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { Map } from 'immutable';
 import { v4 } from 'uuid';
 import { actions } from 'redux/notes/actions';
+import { TextField } from 'components/TextField/TextField';
+import { Checkbox } from 'components/Checkbox/Checkbox';
 
 const mapDispatchToProps = (dispatch) => ({
   addNote: (data) => dispatch(actions.addNote(data)),
@@ -17,34 +19,38 @@ class AddNotesForm extends PureComponent {
 
   state = {
     type: false,
-    category: 'AlL',
+    category: 'all',
     disabled: false,
   }
 
-  handleChange = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
+  handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
 
     this.setState({ [name]: value });
   }
 
-  handleChangeCheckbox = (event) => {
-    const name = event.target.name;
-    this.setState({ [name]: event.target.checked });
+  handleChangeCheckbox = (e) => {
+    const name = e.target.name;
+    this.setState({ [name]: e.target.checked });
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
   }
 
   handleClick = () => {
-    const note = Map({
-      id: v4(),
-      price: Math.random() * 100,
-      description: 'Носоччкм',
-      type: 'dec',
-      currency: 'BYN',
-      date: new Date(),
-      category: 'Одежда'
-    });
+    const { price, description, isInc, date, category } = this.state;
 
-    console.log({ note });
+    const note = Map({
+      price,
+      description,
+      isInc,
+      date: new Date(date),
+      category,
+      id: v4(),
+      currency: 'BYN'
+    });
 
     if (!this.state.disabled) {
       this.props.addNote({ note });
@@ -54,29 +60,33 @@ class AddNotesForm extends PureComponent {
 
   render() {
     return (
-      <div>
+      <form onSubmit={this.handleSubmit}>
         <div>
-          <textarea name="" id="" cols="30" rows="10" placeholder="description" name="description" onChange={this.handleChange}></textarea>
+          <textarea name="" id="" cols="30" rows="10" placeholder="description" name="description" onChange={this.handleChange} required></textarea>
         </div>
         <div>
-          <input type="number" placeholder="price" name="price" onChange={this.handleChange}/>
+          <TextField
+            name="price"
+            type="number"
+            onChange={this.handleChange}
+          />
         </div>
         <div>
-          <input name="date" type="date" onChange={this.handleChange}/>
+          <input name="date" type="date" onChange={this.handleChange} />
         </div>
         <div>
-          <label htmlFor="inc">
-            type
-            <input name="type" type="checkbox" id="inc"  onChange={this.handleChangeCheckbox} />
-          </label>
+          <Checkbox
+            name="isInc"
+            onChange={this.handleChangeCheckbox}
+          />
         </div>
         <div>
-          <select name="" id="" name="category" onChange={this.handleChange} defaultValue="All">
+          <select name="" id="" name="category" onChange={this.handleChange} defaultValue="All" required>
             <option value="All">All</option>
           </select>
         </div>
-        <button onClick={this.handleClick} disabled={this.state.disabled}>Add Note</button>
-      </div>
+        <button onClick={this.handleClick} disabled={this.state.disabled} type="submit">Add Note</button>
+      </form>
     );
   }
 }

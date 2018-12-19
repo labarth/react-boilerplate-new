@@ -2,26 +2,35 @@ import { v4 } from 'uuid';
 import { List, Map } from 'immutable';
 import { handleActions } from 'redux-actions';
 import { actions } from './actions';
+import { getLocalStorage, setLocalStorage } from 'utils/utils';
 
-const initialState = List([
-  Map({
-    id: v4(),
-    price: '20',
-    description: 'Носки',
-    type: 'dec',
-    currency: 'BYN',
-    date: new Date(),
-    category: 'Одежда'
-  })
-])
+const initialState = () => {
+  const notes = getLocalStorage('notes');
 
+  if (notes === null) {
+    return List();
+  }
 
-const addNode = (state, { payload }) => state.push(payload.note);
+  const newNotes = notes.map((item) => Map(item));
 
-const deleteNote = (state, { payload }) => state.filter((note) => note.get('id') !== payload.id);
+  return List(newNotes);
+}
+
+const addNode = (state, { payload }) => {
+  const newState = state.push(payload.note);
+  setLocalStorage('notes', newState);
+
+  return newState;
+}
+
+const deleteNote = (state, { payload }) => {
+  const newState = state.filter((note) => note.get('id') !== payload.id);
+  setLocalStorage('notes', newState);
+  return newState;
+}
 
 
 export default  handleActions({
   [actions.addNote]: addNode,
   [actions.deleteNote]: deleteNote,
-}, initialState);
+}, initialState());
