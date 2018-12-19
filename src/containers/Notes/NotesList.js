@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Immutable from 'immutable';
-import { v4 } from 'uuid';
 import { actions } from 'redux/notes/actions';
 import { connect } from 'react-redux';
 import { List } from 'components/List/List';

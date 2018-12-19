@@ -11,7 +11,7 @@ module.exports = {
       "components": [ "Link" ],
       "specialLink": [ "to" ]
     }],
-
+    "max-len": [2, 120, 4],
     "import/extensions": ["error", "never", { "packages": "always" }],
     "import/no-unresolved": "off",
     "import/prefer-default-export": "off",

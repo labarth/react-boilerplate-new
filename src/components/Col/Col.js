@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { StyledCol } from './Styled';
 
 class Col extends PureComponent {
-  static propTypes = {};
-
-  static defaultProps = {};
+  static propTypes = {
+    children: PropTypes.oneOfType([PropTypes.node, PropTypes.string]).isRequired,
+  };
 
   render() {
     return (

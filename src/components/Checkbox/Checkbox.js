@@ -24,7 +24,6 @@ class Checkbox extends PureComponent {
           onChange={onChange}
           defaultChecked={false}
         />
-        <label htmlFor="" />
       </StyledCheckbox>
     );
   }

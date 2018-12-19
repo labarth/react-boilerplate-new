@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { StyledInput } from './Styled.js';
+import { StyledInput } from './Styled';
 
 class TextField extends PureComponent {
   static propTypes = {

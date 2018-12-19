@@ -1,4 +1,3 @@
-import { v4 } from 'uuid';
 import { List, Map } from 'immutable';
 import { handleActions } from 'redux-actions';
 import { getLocalStorage, setLocalStorage } from 'utils/utils';

@@ -45,7 +45,7 @@ class NotesListItem extends PureComponent {
           <Col><StyledCol>Описание:</StyledCol></Col>
           <Col>{item.description}</Col>
         </Row>
-        <button onClick={this.handleDeleteItem}>delete</button>
+        <button onClick={this.handleDeleteItem} type="submit">delete</button>
       </StyledItem>
     );
   }

@@ -13,25 +13,25 @@ const mapDispatchToProps = (dispatch) => ({
 
 @connect(null, mapDispatchToProps)
 class AddNotesForm extends PureComponent {
-  static propTypes = {};
-
-  static defaultProps = {};
+  static propTypes = {
+    addNote: PropTypes.func.isRequired,
+  };
 
   state = {
-    type: false,
+    isInc: false,
     category: 'all',
     disabled: false,
   }
 
   handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
+    const { name } = e.target;
+    const { value } = e.target;
 
     this.setState({ [name]: value });
   }
 
   handleChangeCheckbox = (e) => {
-    const name = e.target.name;
+    const { name } = e.target;
     this.setState({ [name]: e.target.checked });
   }
 
@@ -61,7 +61,7 @@ class AddNotesForm extends PureComponent {
     return (
       <form onSubmit={this.handleSubmit}>
         <div>
-          <textarea name="" id="" cols="30" rows="10" placeholder="description" name="description" onChange={this.handleChange} required />
+          <textarea placeholder="description" name="description" onChange={this.handleChange} required />
         </div>
         <div>
           <TextField
@@ -80,7 +80,7 @@ class AddNotesForm extends PureComponent {
           />
         </div>
         <div>
-          <select name="" id="" name="category" onChange={this.handleChange} defaultValue="All" required>
+          <select name="category" onChange={this.handleChange} defaultValue="All" required>
             <option value="All">All</option>
           </select>
         </div>
