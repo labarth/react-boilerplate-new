@@ -7,20 +7,21 @@ class SelectField extends PureComponent {
     name: PropTypes.string,
     onChange: PropTypes.func,
     defaultValue: PropTypes.string,
-    source: PropTypes.array,
-    value: PropTypes.string,
+    source: PropTypes.arrayOf(PropTypes.shape({
+      label: PropTypes.string,
+      value: PropTypes.string,
+    })),
   };
 
   static defaultProps = {
     name: null,
     defaultValue: null,
-    value: null,
     source: [],
     onChange: Function.prototype,
   };
 
   render() {
-    const { name, onChange, defaultValue, source, value } = this.props;
+    const { name, onChange, defaultValue, source } = this.props;
     return (
       <StyledSelectWrapper>
         <StyledSelect
