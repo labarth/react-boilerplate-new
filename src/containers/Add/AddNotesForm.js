@@ -6,6 +6,11 @@ import { v4 } from 'uuid';
 import { actions } from 'redux/notes/actions';
 import { TextField } from 'components/TextField/TextField';
 import { Checkbox } from 'components/Checkbox/Checkbox';
+import { Textarea } from 'components/Textarea/Textarea';
+import { SelectField } from 'components/SelectField/SelectField';
+import { Button } from 'components/Button/Button';
+
+const currentDate = `${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDate()}`;
 
 const mapDispatchToProps = (dispatch) => ({
   addNote: (data) => dispatch(actions.addNote(data)),
@@ -21,6 +26,7 @@ class AddNotesForm extends PureComponent {
     isInc: false,
     category: 'all',
     disabled: false,
+    date: currentDate,
   }
 
   handleChange = (e) => {
@@ -60,18 +66,24 @@ class AddNotesForm extends PureComponent {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
+        <h1>Добавить запись</h1>
         <div>
-          <textarea placeholder="description" name="description" onChange={this.handleChange} required />
+          <Textarea
+            placeholder="description"
+            name="description"
+            onChange={this.handleChange}
+          />
         </div>
         <div>
           <TextField
+            placeholder="price"
             name="price"
             type="number"
             onChange={this.handleChange}
           />
         </div>
         <div>
-          <input name="date" type="date" onChange={this.handleChange} />
+          <input name="date" type="date" onChange={this.handleChange} defaultValue={currentDate} />
         </div>
         <div>
           <Checkbox
@@ -80,11 +92,20 @@ class AddNotesForm extends PureComponent {
           />
         </div>
         <div>
-          <select name="category" onChange={this.handleChange} defaultValue="All" required>
-            <option value="All">All</option>
-          </select>
+          <SelectField
+            name="category"
+            onChange={this.handleChange}
+            defaultValue="All"
+            source={[{ label: 'All', value: 'All' }]}
+          />
         </div>
-        <button onClick={this.handleClick} disabled={this.state.disabled} type="submit">Add Note</button>
+        <Button
+          onClick={this.handleClick}
+          disabled={this.state.disabled}
+          type="submit"
+        >
+          Add Note
+        </Button>
       </form>
     );
   }

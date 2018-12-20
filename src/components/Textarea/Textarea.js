@@ -1,37 +1,34 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { StyledInput } from './Styled';
+import { StyledTextarea } from './Styled';
 
-class TextField extends PureComponent {
+class Textarea extends PureComponent {
   static propTypes = {
     name: PropTypes.string,
-    type: PropTypes.oneOf(['text', 'number']),
     disabled: PropTypes.bool,
     onChange: PropTypes.func,
     placeholder: PropTypes.string,
   };
 
   static defaultProps = {
-    name: null,
     placeholder: null,
-    type: 'text',
+    name: null,
     disabled: false,
     onChange: Function.prototype,
   };
 
   render() {
-    const { name, type, disabled, onChange, placeholder } = this.props;
+    const { name, disabled, onChange, placeholder } = this.props;
 
     return (
-      <StyledInput
+      <StyledTextarea
+        placeholder={placeholder}
         name={name}
-        type={type}
         onChange={onChange}
         disabled={disabled}
-        placeholder={placeholder}
       />
     );
   }
 }
 
-export { TextField };
+export { Textarea };

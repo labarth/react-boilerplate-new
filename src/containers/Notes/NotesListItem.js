@@ -32,6 +32,7 @@ class NotesListItem extends PureComponent {
         <Row>
           <Col><StyledCol>Цена:</StyledCol></Col>
           <Col>
+            {!item.isInc && '-'}
             {item.price}
             {' '}
             {item.currency}

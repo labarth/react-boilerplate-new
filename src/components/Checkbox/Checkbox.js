@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { StyledCheckbox, StyledInputCheckbox } from './Styled';
+import { StyledCheckbox, StyledInputCheckbox, StyledIndicator } from './Styled';
 
 class Checkbox extends PureComponent {
   static propTypes = {
@@ -18,12 +18,14 @@ class Checkbox extends PureComponent {
 
     return (
       <StyledCheckbox>
+        first checkbox
         <StyledInputCheckbox
           type="checkbox"
           name={name}
           onChange={onChange}
           defaultChecked={false}
         />
+        <StyledIndicator />
       </StyledCheckbox>
     );
   }
