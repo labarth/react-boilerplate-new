@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { List } from 'immutable';
 import { StyledArrow, StyledSelect, StyledSelectWrapper } from './Styled';
 
 class SelectField extends PureComponent {
@@ -7,10 +8,7 @@ class SelectField extends PureComponent {
     name: PropTypes.string,
     onChange: PropTypes.func,
     defaultValue: PropTypes.string,
-    source: PropTypes.arrayOf(PropTypes.shape({
-      label: PropTypes.string,
-      value: PropTypes.string,
-    })),
+    source: PropTypes.instanceOf(List),
   };
 
   static defaultProps = {
@@ -22,6 +20,7 @@ class SelectField extends PureComponent {
 
   render() {
     const { name, onChange, defaultValue, source } = this.props;
+
     return (
       <StyledSelectWrapper>
         <StyledSelect
@@ -29,7 +28,8 @@ class SelectField extends PureComponent {
           onChange={onChange}
           defaultValue={defaultValue}
         >
-          {source.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
+          {source.map((option) => (
+            <option key={option.get('value')} value={option.value}>{option.get('label')}</option>))}
         </StyledSelect>
         <StyledArrow />
       </StyledSelectWrapper>

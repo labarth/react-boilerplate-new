@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Map } from 'immutable';
+import { Map, List } from 'immutable';
 import { v4 } from 'uuid';
 import { actions } from 'redux/notes/actions';
 import { TextField } from 'components/TextField/TextField';
@@ -16,10 +16,15 @@ const mapDispatchToProps = (dispatch) => ({
   addNote: (data) => dispatch(actions.addNote(data)),
 });
 
-@connect(null, mapDispatchToProps)
+const mapStateToProps = (state) => ({
+  categories: state.categories,
+});
+
+@connect(mapStateToProps, mapDispatchToProps)
 class AddNotesForm extends PureComponent {
   static propTypes = {
     addNote: PropTypes.func.isRequired,
+    categories: PropTypes.instanceOf(List),
   };
 
   state = {
@@ -96,7 +101,7 @@ class AddNotesForm extends PureComponent {
             name="category"
             onChange={this.handleChange}
             defaultValue="All"
-            source={[{ label: 'All', value: 'All' }]}
+            source={this.props.categories}
           />
         </div>
         <Button

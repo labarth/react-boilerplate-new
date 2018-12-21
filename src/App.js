@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { NotesList } from 'containers/Notes/NotesList';
 import styled from 'styled-components';
-import { AddNotesForm } from './containers/Add/AddNotesForm';
+import { NotesList } from 'containers/Notes/NotesList';
+import { AddNotesForm } from 'containers/AddNotes/AddNotesForm';
+import { AddCategories } from 'containers/AddCategories/AddCategories';
 
 export const StyledApp = styled.div`
   display: grid;
@@ -17,6 +18,8 @@ class App extends Component {
     return (
       <StyledApp>
         <NotesList />
+        <AddCategories />
+        <div />
         <AddNotesForm />
       </StyledApp>
     );
