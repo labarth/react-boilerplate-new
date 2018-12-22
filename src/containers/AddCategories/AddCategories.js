@@ -22,8 +22,12 @@ class AddCategories extends PureComponent {
   static propTypes = {
     addCategory: PropTypes.func.isRequired,
     deleteCategory: PropTypes.func.isRequired,
-    categories: PropTypes.instanceOf(List).isRequired,
+    categories: PropTypes.instanceOf(List),
   };
+
+  static defaultProps = {
+    categories: List(),
+  }
 
   state = {
     text: null,
@@ -35,7 +39,7 @@ class AddCategories extends PureComponent {
 
   isCategoryValidate = (value) => Boolean(this.findCategory(value)) || value.length < 3;
 
-  isDeleteCategoryValidate = (value) => !Boolean(this.findCategory(value)) || false;
+  isDeleteCategoryValidate = (value) => !this.findCategory(value) || false;
 
   handleChange = (e) => {
     this.setState({
@@ -63,8 +67,8 @@ class AddCategories extends PureComponent {
       <div>
         <h1>Добавить категорию</h1>
         <TextField onChange={this.handleChange} />
-        <Button onClick={this.handleClick} disabled={this.state.isAddCategoryValidate}>Add category</Button>
-        <Button onClick={this.handleDelete} disabled={this.state.isDeleteCategoryValidate}>delete category</Button>
+        <Button onClick={this.handleClick} disabled={this.state.isAddCategoryValidate}>Добавить категорию</Button>
+        <Button onClick={this.handleDelete} disabled={this.state.isDeleteCategoryValidate}>Удалить категорию</Button>
       </div>
     );
   }

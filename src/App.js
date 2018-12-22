@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { NotesList } from 'containers/Notes/NotesList';
 import { AddNotesForm } from 'containers/AddNotes/AddNotesForm';
 import { AddCategories } from 'containers/AddCategories/AddCategories';
+import { Balance } from 'containers/Balance/Balance';
 
 export const StyledApp = styled.div`
   display: grid;
@@ -21,6 +22,7 @@ class App extends Component {
         <AddCategories />
         <div />
         <AddNotesForm />
+        <Balance />
       </StyledApp>
     );
   }

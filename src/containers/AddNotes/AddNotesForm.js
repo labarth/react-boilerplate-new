@@ -27,12 +27,21 @@ class AddNotesForm extends PureComponent {
     categories: PropTypes.instanceOf(List),
   };
 
-  state = {
-    isInc: false,
-    category: 'all',
-    disabled: false,
-    date: currentDate,
+  static defaultProps = {
+    categories: List(),
   }
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isInc: false,
+      category: props.categories.get(0).get('label'),
+      disabled: false,
+      date: currentDate,
+    };
+  }
+
 
   handleChange = (e) => {
     const { name } = e.target;
@@ -100,7 +109,6 @@ class AddNotesForm extends PureComponent {
           <SelectField
             name="category"
             onChange={this.handleChange}
-            defaultValue="All"
             source={this.props.categories}
           />
         </div>
@@ -109,7 +117,7 @@ class AddNotesForm extends PureComponent {
           disabled={this.state.disabled}
           type="submit"
         >
-          Add Note
+          Добавить
         </Button>
       </form>
     );
