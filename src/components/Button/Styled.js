@@ -6,6 +6,7 @@ export const StyledButton = styled.button`
   padding: 6px 14px;
   opacity: ${(props) => props.disabled && 0.5};
   pointer-events: ${(props) => props.disabled && 'none'};
+  outline: none;
   
   :hover {
     background-color: #c6c6c6;

@@ -18,7 +18,7 @@ class Checkbox extends PureComponent {
 
     return (
       <StyledCheckbox>
-        first checkbox
+        Доход
         <StyledInputCheckbox
           type="checkbox"
           name={name}

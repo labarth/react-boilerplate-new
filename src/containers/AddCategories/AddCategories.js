@@ -31,25 +31,17 @@ class AddCategories extends PureComponent {
     isDeleteCategoryValidate: true,
   }
 
-  isCategoryValidate = (value) => (
-    this.props.categories.filter((item) => item.get('label') === value).size || value.length < 3
-  );
+  findCategory = (value) => this.props.categories.find((item) => item.get('label') === value) || false;
 
-  isDeleteCategoryValidate = (isReturnValue = false, value) => {
-    const findCategory = this.props.categories.filter((item) => item.get('label') === value);
+  isCategoryValidate = (value) => Boolean(this.findCategory(value)) || value.length < 3;
 
-    if (!isReturnValue) {
-      return !!!findCategory.size;
-    }
-
-    return findCategory.get(0).get('value');
-  }
+  isDeleteCategoryValidate = (value) => !Boolean(this.findCategory(value)) || false;
 
   handleChange = (e) => {
     this.setState({
       text: e.target.value,
       isAddCategoryValidate: this.isCategoryValidate(e.target.value),
-      isDeleteCategoryValidate: this.isDeleteCategoryValidate(false, e.target.value),
+      isDeleteCategoryValidate: this.isDeleteCategoryValidate(e.target.value),
     });
   }
 
@@ -63,12 +55,13 @@ class AddCategories extends PureComponent {
   }
 
   handleDelete = () => {
-    this.props.deleteCategory({ value: this.isDeleteCategoryValidate(true, this.state.text) });
+    this.props.deleteCategory({ value: this.findCategory(this.state.text).get('value') });
   }
 
   render() {
     return (
       <div>
+        <h1>Добавить категорию</h1>
         <TextField onChange={this.handleChange} />
         <Button onClick={this.handleClick} disabled={this.state.isAddCategoryValidate}>Add category</Button>
         <Button onClick={this.handleDelete} disabled={this.state.isDeleteCategoryValidate}>delete category</Button>
