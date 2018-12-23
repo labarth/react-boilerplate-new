@@ -5,20 +5,22 @@ import { StyledCheckbox, StyledInputCheckbox, StyledIndicator } from './Styled';
 class Checkbox extends PureComponent {
   static propTypes = {
     name: PropTypes.string,
+    label: PropTypes.string,
     onChange: PropTypes.func,
   };
 
   static defaultProps = {
-    name: null,
+    name: '',
+    label: '',
     onChange: Function.prototype,
   };
 
   render() {
-    const { name, onChange } = this.props;
+    const { name, onChange, label } = this.props;
 
     return (
       <StyledCheckbox>
-        Доход
+        {label}
         <StyledInputCheckbox
           type="checkbox"
           name={name}

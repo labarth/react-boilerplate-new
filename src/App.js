@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 import { NotesList } from 'containers/Notes/NotesList';
 import { AddNotesForm } from 'containers/AddNotes/AddNotesForm';
 import { AddCategories } from 'containers/AddCategories/AddCategories';
+import { FilterNotes } from 'containers/FilterNotes/FilterNotes';
 import { Balance } from 'containers/Balance/Balance';
 import { Page } from 'components/Layout/Page';
-import { Row } from 'components/Row/Row';
 import { Col } from 'components/Col/Col';
-import {Scroll} from './components/Scroll/Srcoll'
+import { Row } from 'components/Row/Row';
 
 class App extends Component {
   shouldComponentUpdate() {
@@ -17,6 +16,7 @@ class App extends Component {
   render() {
     return (
       <Page>
+        <FilterNotes />
         <div style={{
           display: 'flex',
           minHeight: '100%',
@@ -30,15 +30,18 @@ class App extends Component {
             height: '100%',
             width: '100%',
             display: 'flex',
+            flexDirection: 'column',
           }}
           >
-            <Col>
-              <NotesList />
-            </Col>
-            <Col>
-              <AddCategories />
-              <AddNotesForm />
-            </Col>
+            <Row>
+              <Col>
+                <NotesList />
+              </Col>
+              <Col>
+                <AddCategories />
+                <AddNotesForm />
+              </Col>
+            </Row>
           </div>
           <Balance />
         </div>

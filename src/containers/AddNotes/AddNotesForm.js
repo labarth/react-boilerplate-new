@@ -104,6 +104,7 @@ class AddNotesForm extends PureComponent {
           <Checkbox
             name="isInc"
             onChange={this.handleChangeCheckbox}
+            label="Доход"
           />
         </div>
         <div>
