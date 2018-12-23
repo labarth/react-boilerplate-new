@@ -30,7 +30,7 @@ class AddCategories extends PureComponent {
   }
 
   state = {
-    text: null,
+    text: '',
     isAddCategoryValidate: true,
     isDeleteCategoryValidate: true,
   }
@@ -56,17 +56,22 @@ class AddCategories extends PureComponent {
     });
 
     this.props.addCategory({ category });
+    this.setState({ text: '' });
   }
 
   handleDelete = () => {
     this.props.deleteCategory({ value: this.findCategory(this.state.text).get('value') });
+    this.setState({ text: '' });
   }
 
   render() {
     return (
       <div>
         <h1>Добавить категорию</h1>
-        <TextField onChange={this.handleChange} />
+        <TextField
+          onChange={this.handleChange}
+          value={this.state.text}
+        />
         <Button onClick={this.handleClick} disabled={this.state.isAddCategoryValidate}>Добавить категорию</Button>
         <Button onClick={this.handleDelete} disabled={this.state.isDeleteCategoryValidate}>Удалить категорию</Button>
       </div>

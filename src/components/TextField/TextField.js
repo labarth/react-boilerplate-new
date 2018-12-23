@@ -5,6 +5,7 @@ import { StyledInput } from './Styled';
 class TextField extends PureComponent {
   static propTypes = {
     name: PropTypes.string,
+    value: PropTypes.string,
     type: PropTypes.oneOf(['text', 'number']),
     disabled: PropTypes.bool,
     onChange: PropTypes.func,
@@ -17,10 +18,11 @@ class TextField extends PureComponent {
     type: 'text',
     disabled: false,
     onChange: Function.prototype,
+    value: '',
   };
 
   render() {
-    const { name, type, disabled, onChange, placeholder } = this.props;
+    const { name, type, disabled, onChange, placeholder, value } = this.props;
 
     return (
       <StyledInput
@@ -29,6 +31,7 @@ class TextField extends PureComponent {
         onChange={onChange}
         disabled={disabled}
         placeholder={placeholder}
+        value={value}
       />
     );
   }
