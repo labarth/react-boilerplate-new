@@ -93,6 +93,7 @@ class AddNotesForm extends PureComponent {
             placeholder="price"
             name="price"
             type="number"
+            value={this.state.price}
             onChange={this.handleChange}
           />
         </div>

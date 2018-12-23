@@ -189,4 +189,13 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
   }
+  
+  #root {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: hidden;
+  }
 `;
