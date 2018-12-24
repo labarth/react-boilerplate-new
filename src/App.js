@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { NotesList } from 'containers/Notes/NotesList';
 import { AddNotesForm } from 'containers/AddNotes/AddNotesForm';
 import { AddCategories } from 'containers/AddCategories/AddCategories';
-import { FilterNotes } from 'containers/FilterNotes/FilterNotes';
 import { Balance } from 'containers/Balance/Balance';
 import { Page } from 'components/Layout/Page';
-import { Col } from 'components/Col/Col';
-import { Row } from 'components/Row/Row';
+import { Header } from 'components/Layout/Header';
+import { Footer } from 'components/Layout/Footer';
+import { Content } from 'components/Layout/Content';
+import { Section } from 'components/Layout/Section';
+
 
 class App extends Component {
   shouldComponentUpdate() {
@@ -16,35 +18,19 @@ class App extends Component {
   render() {
     return (
       <Page>
-        <FilterNotes />
-        <div style={{
-          display: 'flex',
-          minHeight: '100%',
-          minWidth: '100%',
-          height: '100%',
-          width: '100%',
-          flexDirection: 'column',
-        }}
-        >
-          <div style={{
-            height: '100%',
-            width: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-          }}
-          >
-            <Row>
-              <Col>
-                <NotesList />
-              </Col>
-              <Col>
-                <AddCategories />
-                <AddNotesForm />
-              </Col>
-            </Row>
-          </div>
+        <Header>header</Header>
+        <Content>
+          <Section>
+            <NotesList />
+          </Section>
+          <Section>
+            <AddCategories />
+            <AddNotesForm />
+          </Section>
+        </Content>
+        <Footer>
           <Balance />
-        </div>
+        </Footer>
       </Page>
     );
   }

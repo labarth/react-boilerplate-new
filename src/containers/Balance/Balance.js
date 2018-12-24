@@ -1,32 +1,22 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { List } from 'immutable';
+import { totalBalanceSelector } from 'selectors/rootSelector';
 
 const mapStateToProps = (state) => ({
-  notes: state.notes,
+  totalBalance: totalBalanceSelector(state),
 });
 
 @connect(mapStateToProps)
 class Balance extends PureComponent {
   static propTypes = {
-    notes: PropTypes.instanceOf(List).isRequired,
+    totalBalance: PropTypes.number.isRequired,
   };
 
   render() {
-    const { notes } = this.props;
-    let startBalance = 0;
-
-    notes.forEach((item) => {
-      if (item.get('isInc')) {
-        startBalance += Number(item.get('price'));
-      } else {
-        startBalance += Number(item.get('price') * -1);
-      }
-    });
-
+    console.log('re-render');
     return (
-      <h1>{`Баланс счета: ${startBalance} BYN`}</h1>
+      <h1>{`Баланс счета: ${this.props.totalBalance} BYN`}</h1>
     );
   }
 }
