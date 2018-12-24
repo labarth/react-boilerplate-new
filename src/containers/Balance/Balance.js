@@ -14,7 +14,6 @@ class Balance extends PureComponent {
   };
 
   render() {
-    console.log('re-render');
     return (
       <h1>{`Баланс счета: ${this.props.totalBalance} BYN`}</h1>
     );
