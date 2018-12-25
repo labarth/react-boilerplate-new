@@ -9,6 +9,14 @@ import { Checkbox } from 'components/Checkbox/Checkbox';
 import { Textarea } from 'components/Textarea/Textarea';
 import { SelectField } from 'components/SelectField/SelectField';
 import { Button } from 'components/Button/Button';
+import { isNumber, isMinLength, isNotEmpty } from 'utils/validate';
+import {
+  CATEGORY_FIELD_NAME,
+  DATE_FIELD_NAME,
+  DESCRIPTION_FIELD_NAME,
+  IS_INCREMENT_FIELD_NAME,
+  PRICE_FIELD_NAME,
+} from 'contstants/constants';
 
 const currentDate = `${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDate()}`;
 
@@ -37,8 +45,11 @@ class AddNotesForm extends PureComponent {
     this.state = {
       isInc: false,
       category: props.categories.get(0).get('label'),
-      disabled: false,
       date: currentDate,
+      isValidPrice: false,
+      isValidDescription: false,
+      price: 0,
+      description: '',
     };
   }
 
@@ -47,7 +58,9 @@ class AddNotesForm extends PureComponent {
     const { name } = e.target;
     const { value } = e.target;
 
-    this.setState({ [name]: value });
+    this.setState({
+      [name]: value,
+    });
   }
 
   handleChangeCheckbox = (e) => {
@@ -59,6 +72,20 @@ class AddNotesForm extends PureComponent {
     e.preventDefault();
   }
 
+  handleChangePrice = (e) => {
+    this.setState({
+      [PRICE_FIELD_NAME]: e.target.value,
+      isValidPrice: isNumber(e.target.value),
+    });
+  }
+
+  handleChangeDescription = (e) => {
+    this.setState({
+      [DESCRIPTION_FIELD_NAME]: e.target.value,
+      isValidDescription: isMinLength(e.target.value, 3),
+    });
+  }
+
   handleClick = () => {
     const { price, description, isInc, date, category } = this.state;
 
@@ -66,57 +93,71 @@ class AddNotesForm extends PureComponent {
       price,
       description,
       isInc,
-      date: new Date(date),
+      date: new Date(date || currentDate),
       category,
       id: v4(),
       currency: 'BYN',
     });
 
-    if (!this.state.disabled) {
-      this.props.addNote({ note });
-    }
+    this.props.addNote({ note });
+
+    this.setState({
+      price: 0,
+      description: '',
+    });
   }
 
   render() {
+    const { isValidPrice, price, description, isValidDescription } = this.state;
+    const { categories } = this.props;
+
+    const isFormValidate = !(isValidDescription && isValidPrice);
     return (
       <form onSubmit={this.handleSubmit}>
         <h1>Добавить запись</h1>
         <div>
           <Textarea
-            placeholder="description"
-            name="description"
-            onChange={this.handleChange}
+            name={DESCRIPTION_FIELD_NAME}
+            placeholder="Описание"
+            onChange={this.handleChangeDescription}
+            value={description}
           />
         </div>
         <div>
           <TextField
-            placeholder="price"
-            name="price"
+            name={PRICE_FIELD_NAME}
+            placeholder="Сумма"
             type="number"
-            value={this.state.price}
-            onChange={this.handleChange}
+            value={price}
+            onChange={this.handleChangePrice}
+            validate={isValidPrice}
           />
         </div>
         <div>
-          <input name="date" type="date" onChange={this.handleChange} defaultValue={currentDate} />
+          <input
+            name={DATE_FIELD_NAME}
+            type="date"
+            onChange={this.handleChange}
+            defaultValue={currentDate}
+          />
         </div>
         <div>
           <Checkbox
-            name="isInc"
+            name={IS_INCREMENT_FIELD_NAME}
             onChange={this.handleChangeCheckbox}
             label="Доход"
           />
         </div>
         <div>
           <SelectField
-            name="category"
+            name={CATEGORY_FIELD_NAME}
             onChange={this.handleChange}
-            source={this.props.categories}
+            source={categories}
           />
         </div>
         <Button
           onClick={this.handleClick}
-          disabled={this.state.disabled}
+          disabled={isFormValidate}
           type="submit"
         >
           Добавить

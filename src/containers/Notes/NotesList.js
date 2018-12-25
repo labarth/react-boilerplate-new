@@ -5,6 +5,7 @@ import { actions } from 'redux/notes/actions';
 import { connect } from 'react-redux';
 import { List } from 'components/List/List';
 import { Scroll } from 'components/Scroll/Srcoll';
+import { sortByDateSelector } from 'selectors/rootSelector';
 import { NotesListItem } from './NotesListItem';
 
 
@@ -13,7 +14,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = (state) => ({
-  notes: state.notes,
+  notes: sortByDateSelector(state),
 });
 
 @connect(mapStateToProps, mapDispatchToProps)

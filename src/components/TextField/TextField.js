@@ -5,7 +5,7 @@ import { StyledInput } from './Styled';
 class TextField extends PureComponent {
   static propTypes = {
     name: PropTypes.string,
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     type: PropTypes.oneOf(['text', 'number']),
     disabled: PropTypes.bool,
     onChange: PropTypes.func,

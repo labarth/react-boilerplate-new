@@ -8,6 +8,7 @@ import { Header } from 'components/Layout/Header';
 import { Footer } from 'components/Layout/Footer';
 import { Content } from 'components/Layout/Content';
 import { Section } from 'components/Layout/Section';
+import { SortNotes } from './containers/SortNotes/SortNotes';
 
 
 class App extends Component {
@@ -18,7 +19,9 @@ class App extends Component {
   render() {
     return (
       <Page>
-        <Header>header</Header>
+        <Header>
+          <SortNotes />
+        </Header>
         <Content>
           <Section>
             <NotesList />

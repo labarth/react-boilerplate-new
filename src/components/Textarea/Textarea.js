@@ -8,6 +8,7 @@ class Textarea extends PureComponent {
     disabled: PropTypes.bool,
     onChange: PropTypes.func,
     placeholder: PropTypes.string,
+    value: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
@@ -18,7 +19,7 @@ class Textarea extends PureComponent {
   };
 
   render() {
-    const { name, disabled, onChange, placeholder } = this.props;
+    const { name, disabled, onChange, placeholder, value } = this.props;
 
     return (
       <StyledTextarea
@@ -26,6 +27,7 @@ class Textarea extends PureComponent {
         name={name}
         onChange={onChange}
         disabled={disabled}
+        value={value}
       />
     );
   }
