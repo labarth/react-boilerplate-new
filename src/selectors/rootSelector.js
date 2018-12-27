@@ -1,6 +1,10 @@
 import { createSelector } from 'reselect';
+import { sortByDate } from 'utils/sort';
+
 
 const notesSelector = (state) => state.notes;
+
+const sortNotesTypeSelector = (state) => state.sortNotes;
 
 export const totalBalanceSelector = createSelector(
   notesSelector,
@@ -10,20 +14,6 @@ export const totalBalanceSelector = createSelector(
 );
 
 export const sortByDateSelector = createSelector(
-  notesSelector,
-  (items) => {
-    const result = items.sort((firstDate, secondDate) => {
-      const firstDateValue = new Date(firstDate.get('date')).toLocaleDateString();
-      const secondDateValue = new Date(secondDate.get('date')).toLocaleDateString();
-      if (firstDateValue > secondDateValue) {
-        return 1;
-      }
-      if (firstDateValue < secondDateValue) {
-        return -1;
-      }
-      return 0;
-    });
-
-    return result;
-  },
+  [notesSelector, sortNotesTypeSelector],
+  (items, type) => sortByDate(items, type),
 );

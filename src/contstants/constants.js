@@ -3,3 +3,6 @@ export const DESCRIPTION_FIELD_NAME = 'description';
 export const IS_INCREMENT_FIELD_NAME = 'isInc';
 export const DATE_FIELD_NAME = 'date';
 export const CATEGORY_FIELD_NAME = 'category';
+
+export const SORT_DATE_ASC = 'asc';
+export const SORT_DATE_DES = 'des';
