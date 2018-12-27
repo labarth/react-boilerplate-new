@@ -15,10 +15,10 @@ const mapDispatchToProps = (dispatch) => ({
 
 @connect(mapStateToProps, mapDispatchToProps)
 class SortNotes extends PureComponent {
-  static propTypes = {};
-
-  static defaultProps = {};
-
+  static propTypes = {
+    sortNotes: PropTypes.string.isRequired,
+    sortByTypeAction: PropTypes.func.isRequired,
+  };
 
   handleClick = () => {
     const { sortNotes, sortByTypeAction } = this.props;

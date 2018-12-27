@@ -9,7 +9,7 @@ import { Checkbox } from 'components/Checkbox/Checkbox';
 import { Textarea } from 'components/Textarea/Textarea';
 import { SelectField } from 'components/SelectField/SelectField';
 import { Button } from 'components/Button/Button';
-import { isNumber, isMinLength, isNotEmpty } from 'utils/validate';
+import { isNumber, isMinLength } from 'utils/validate';
 import {
   CATEGORY_FIELD_NAME,
   DATE_FIELD_NAME,
