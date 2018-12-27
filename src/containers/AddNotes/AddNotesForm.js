@@ -104,11 +104,12 @@ class AddNotesForm extends PureComponent {
     this.setState({
       price: 0,
       description: '',
+      isInc: false,
     });
   }
 
   render() {
-    const { isValidPrice, price, description, isValidDescription } = this.state;
+    const { isValidPrice, price, description, isValidDescription, isInc } = this.state;
     const { categories } = this.props;
 
     const isFormValidate = !(isValidDescription && isValidPrice);
@@ -145,6 +146,7 @@ class AddNotesForm extends PureComponent {
           <Checkbox
             name={IS_INCREMENT_FIELD_NAME}
             onChange={this.handleChangeCheckbox}
+            checked={isInc}
             label="Доход"
           />
         </div>

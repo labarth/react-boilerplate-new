@@ -1,7 +1,7 @@
 import { handleActions } from 'redux-actions';
 import { v4 } from 'uuid';
 import { List, Map } from 'immutable';
-import { getLocalStorage, setLocalStorage } from 'utils/utils';
+import { getLocalStorage } from 'utils/utils';
 import { addCategory, deleteCategory } from './actions';
 
 const defaultCategories = List([
@@ -55,17 +55,11 @@ const initialState = () => {
   return List(newCategories);
 };
 
-const addCategoryReducer = (state, { payload }) => {
-  const newState = state.push(payload.category);
-  setLocalStorage('categories', newState);
-  return newState;
-};
+const addCategoryReducer = (state, { payload }) => state.push(payload.category);
 
-const deleteCategoryReducer = (state, { payload }) => {
-  const newState = state.filter((category) => category.get('value') !== payload.value);
-  setLocalStorage('categories', newState);
-  return newState;
-};
+const deleteCategoryReducer = (state, { payload }) => (
+  state.filter((category) => category.get('value') !== payload.value)
+);
 
 export default handleActions({
   [addCategory]: addCategoryReducer,

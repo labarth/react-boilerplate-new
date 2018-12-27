@@ -1,6 +1,6 @@
 import { List, Map } from 'immutable';
 import { handleActions } from 'redux-actions';
-import { getLocalStorage, setLocalStorage } from 'utils/utils';
+import { getLocalStorage } from 'utils/utils';
 import { actions } from './actions';
 
 const initialState = () => {
@@ -15,18 +15,9 @@ const initialState = () => {
   return List(newNotes);
 };
 
-const addNode = (state, { payload }) => {
-  const newState = state.push(payload.note);
-  setLocalStorage('notes', newState);
+const addNode = (state, { payload }) => state.push(payload.note);
 
-  return newState;
-};
-
-const deleteNote = (state, { payload }) => {
-  const newState = state.filter((note) => note.get('id') !== payload.id);
-  setLocalStorage('notes', newState);
-  return newState;
-};
+const deleteNote = (state, { payload }) => state.filter((note) => note.get('id') !== payload.id);
 
 
 export default handleActions({

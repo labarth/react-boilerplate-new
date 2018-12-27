@@ -7,16 +7,18 @@ class Checkbox extends PureComponent {
     name: PropTypes.string,
     label: PropTypes.string,
     onChange: PropTypes.func,
+    checked: PropTypes.bool,
   };
 
   static defaultProps = {
     name: '',
     label: '',
+    checked: false,
     onChange: Function.prototype,
   };
 
   render() {
-    const { name, onChange, label } = this.props;
+    const { name, onChange, label, checked } = this.props;
 
     return (
       <StyledCheckbox>
@@ -25,7 +27,7 @@ class Checkbox extends PureComponent {
           type="checkbox"
           name={name}
           onChange={onChange}
-          defaultChecked={false}
+          checked={checked}
         />
         <StyledIndicator />
       </StyledCheckbox>
