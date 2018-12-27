@@ -20,14 +20,24 @@ class SortNotes extends PureComponent {
     sortByTypeAction: PropTypes.func.isRequired,
   };
 
-  handleClick = () => {
-    const { sortNotes, sortByTypeAction } = this.props;
+  get actualSortType() {
+    const { sortNotes } = this.props;
 
     if (sortNotes === SORT_DATE_DES) {
-      sortByTypeAction({ type: SORT_DATE_ASC });
-    } else {
-      sortByTypeAction({ type: SORT_DATE_DES });
+      return { type: SORT_DATE_ASC };
     }
+
+    if (sortNotes === SORT_DATE_ASC) {
+      return { type: SORT_DATE_DES };
+    }
+
+    return 'unknown type';
+  }
+
+  handleClick = () => {
+    const { sortByTypeAction } = this.props;
+
+    sortByTypeAction(this.actualSortType);
   }
 
   render() {
