@@ -1,29 +1,20 @@
 import { SORT_DATE_ASC, SORT_DATE_DES } from 'contstants/constants';
 
-export const sortByDate = (list, type = SORT_DATE_ASC) => (list.sort((firstDate, secondDate) => {
-  const firstDateValue = new Date(firstDate.get('date')).toLocaleDateString();
-  const secondDateValue = new Date(secondDate.get('date')).toLocaleDateString();
-  if (type === SORT_DATE_ASC) {
-    if (firstDateValue > secondDateValue) {
-      return 1;
-    }
+const sortDateAsc = (list) => (
+  list.sort((a, b) => new Date(a.get('date')).getTime() - new Date(b.get('date')).getTime())
+);
 
-    if (firstDateValue < secondDateValue) {
-      return -1;
-    }
-    return 0;
-  }
-  if (type === SORT_DATE_DES) {
-    if (firstDateValue < secondDateValue) {
-      return 1;
-    }
+const sortDateDes = (list) => list.sort((a, b) => (
+  new Date(b.get('date')).getTime() - new Date(a.get('date')).getTime()));
 
-    if (firstDateValue > secondDateValue) {
-      return -1;
-    }
-
-    return 0;
+export const sortNotes = (list, type = SORT_DATE_ASC) => {
+  switch (type) {
+    case SORT_DATE_ASC:
+      return sortDateAsc(list);
+    case SORT_DATE_DES:
+      return sortDateDes(list);
+    default: console.log('error sort');
   }
 
-  return null;
-}));
+  return sortDateAsc(list);
+};

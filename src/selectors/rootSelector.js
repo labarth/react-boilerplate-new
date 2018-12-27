@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { sortByDate } from 'utils/sort';
+import { sortNotes } from 'utils/sort';
 
 
 const notesSelector = (state) => state.notes;
@@ -15,5 +15,5 @@ export const totalBalanceSelector = createSelector(
 
 export const sortByDateSelector = createSelector(
   [notesSelector, sortNotesTypeSelector],
-  (items, type) => sortByDate(items, type),
+  (items, type) => sortNotes(items, type),
 );
