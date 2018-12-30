@@ -15,7 +15,7 @@ class Balance extends PureComponent {
 
   render() {
     return (
-      <h1>{`Баланс счета: ${this.props.totalBalance} BYN`}</h1>
+      <h1>{`Баланс счета: ${this.props.totalBalance.toFixed(2)} BYN`}</h1>
     );
   }
 }
